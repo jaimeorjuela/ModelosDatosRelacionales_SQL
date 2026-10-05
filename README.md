@@ -1,7 +1,5 @@
 # 📝 Taller Práctico: Del Lenguaje Natural al Modelo de Datos (Caso: Mediaglob Inc.)
 **Curso:** Oracle PL/SQL — Sesión 1: Normalización y Modelamiento Lógico
-**Nombres de los Estudiantes:** __________________________________________________
-**Fecha:** ____ / ____ / ________
 
 ---
 
