@@ -161,3 +161,7 @@ Si el dueño de la corporación te solicita añadir el nombre de la Región cont
 
 1. ¿Qué Forma Normal (1FN, 2FN o 3FN) estarías rompiendo al mezclar un dato macro-geográfico en la ficha de una persona?
 2. Explica brevemente qué anomalía de datos (inserción, borrado o actualización) ocurriría si el día de mañana la empresa decide reestructurar el nombre de la región *"Americas"* a *"LATAM & AMER"*.
+
+## 6. Vamos a diagramar
+
+Existen varias herramientas de diagramación de modelos de datos. Vamos a una de ellas: [dbdiagram]([https://oracle.com ](https://dbdiagram.io/ "Documentación Oficial de Oracle").
