@@ -19,6 +19,49 @@ Para que un modelo de datos sea óptimo, íntegro y escalable, debe someterse co
 > 
 > Al desglosar las necesidades de una organización mediante el **análisis lingüístico estructurado**, podemos determinar con precisión matemática dónde deben nacer las Llaves Primarias (PK) para garantizar la unicidad, en qué tablas se deben inyectar las Llaves Foráneas (FK) para entrelazar el modelo, y qué campos deben ser obligatorios u opcionales según el comportamiento del negocio en el tiempo y el espacio.
 
+### 1.2 Las Tres Formas Normales (FN) con Ejemplos Prácticos
+
+Para que un modelo de datos sea óptimo, íntegro y escalable, debe someterse consecutivamente a las reglas de normalización:
+
+#### 1️⃣ Primera Forma Normal (1FN): Atomicidad de los Datos
+*   **Regla:** Exige que todos los atributos sean atómicos (un solo valor por celda) y prohíbe grupos repetidos o listas de datos separados por comas dentro de una sola fila.
+*   **Mal Diseñado (Rompe la 1FN):**
+
+    | ID_Empleado | Nombre | Telefonos |
+    | :--- | :--- | :--- |
+    | 105 | David Austin | 515.123.4567, 515.123.4568 |
+*   **Diseño Normalizado (Cumple 1FN):** Se eliminan las listas creando filas independientes o moviendo los teléfonos a una entidad subordinada.
+
+    | ID_Empleado | Nombre | Telefono |
+    | :--- | :--- | :--- |
+    | 105 | David Austin | 515.123.4567 |
+    | 105 | David Austin | 515.123.4568 |
+
+#### 2️⃣ Segunda Forma Normal (2FN): Dependencia Funcional Completa
+*   **Regla:** Exige que la tabla ya cumpla con la 1FN y que todos los atributos dependan por completo de la **Llave Primaria (PK)**. No pueden existir campos que dependan solo de una "parte" de una llave primaria compuesta.
+*   **Mal Diseñado (Rompe la 2FN):** En la tabla de histórico, la PK es compuesta: `(ID_Empleado, Fecha_Inicio)`. El campo *Nombre_Empleado* solo depende del ID, ignorando por completo la fecha.
+
+    | ID_Empleado (PK) | Fecha_Inicio (PK) | Puesto | Nombre_Empleado (❌ Dependencia Parcial) |
+    | :--- | :--- | :--- | :--- |
+    | 102 | 13-ENE-2021 | IT_PROG | Lex De Haan |
+*   **Diseño Normalizado (Cumple 2FN):** Se remueve el nombre de esta tabla y se deja exclusivamente en la tabla maestra de empleados. En el histórico solo quedan datos que dependan de la combinación de la persona y el momento en el tiempo.
+
+    | ID_Empleado (PK/FK) | Fecha_Inicio (PK) | Puesto |
+    | :--- | :--- | :--- |
+    | 102 | 13-ENE-2021 | IT_PROG |
+
+#### 3️⃣ Tercera Forma Normal (3FN): Eliminación de Dependencias Transitivas
+*   **Regla:** Exige el cumplimiento de la 2FN y prohíbe que una columna que no sea clave dependa de otra columna que tampoco sea clave. Todo debe depender directa y exclusivamente de la Llave Primaria.
+*   **Mal Diseñado (Rompe la 3FN):** El campo *Nombre_Region* depende directamente del *ID_Pais*, no del *ID_Ubicacion* (PK de la tabla). Hay un salto indirecto (dependencia transitiva).
+
+    | ID_Ubicacion (PK) | Ciudad | ID_Pais | Nombre_Region (❌ Rompe 3FN) |
+    | :--- | :--- | :--- | :--- |
+    | 1700 | Bogotá | CO | Americas |
+*   **Diseño Normalizado (Cumple 3FN):** El cumplimiento de esta regla es lo que divide el modelo de forma natural. Separamos la información geográfica creando las tablas maestras independientes `COUNTRIES` y `REGIONS` interconectadas por llaves foráneas.
+    *   *Tabla Ubicaciones:* `[ID_Ubicacion (PK)] -> Ciudad -> ID_Pais (FK)`
+    *   *Tabla Países:* `[ID_Pais (PK)] -> Nombre_Pais -> ID_Region (FK)`
+    *   *Tabla Regiones:* `[ID_Region (PK)] -> Nombre_Region`
+
 ---
 
 ## 🏢 2. Descripción General del Caso de Estudio
