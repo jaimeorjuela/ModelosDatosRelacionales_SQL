@@ -1,0 +1,85 @@
+// --- TABLAS MAESTRAS GEOGRÁFICAS ---
+
+Table regions {
+  region_id number [pk, note: "Llave Primaria"]
+  region_name varchar2(25)
+}
+
+Table countries {
+  country_id char(2) [pk]
+  country_name varchar2(40)
+  region_id number
+}
+
+Table locations {
+  location_id number(4) [pk]
+  street_address varchar2(40)
+  postal_code varchar2(12)
+  city varchar2(30) [not null]
+  state_province varchar2(25)
+  country_id char(2)
+}
+
+// --- TABLAS ESTRUCTURALES ---
+
+Table departments {
+  department_id number(4) [pk]
+  department_name varchar2(30) [not null]
+  manager_id number(6)
+  location_id number(4)
+}
+
+Table jobs {
+  job_id varchar2(10) [pk]
+  job_title varchar2(35) [not null]
+  min_salary number(6)
+  max_salary number(6)
+}
+
+// --- TABLAS OPERATIVAS E HISTÓRICAS ---
+
+Table employees {
+  employee_id number(6) [pk]
+  first_name varchar2(20)
+  last_name varchar2(25) [not null]
+  email varchar2(25) [not null]
+  phone_number varchar2(20)
+  hire_date date [not null]
+  job_id varchar2(10) [not null]
+  salary number(8,2)
+  commission_pct number(2,2)
+  manager_id number(6)
+  department_id number(4)
+}
+
+Table job_history {
+  employee_id number(6) [not null]
+  start_date date [not null]
+  end_date date [not null]
+  job_id varchar2(10) [not null]
+  department_id number(4)
+  
+  indexes {
+    (employee_id, start_date) [pk, name: "pk_job_history", note: "Llave Primaria Compuesta"]
+  }
+}
+
+// --- RELACIONES (RELATIONSHIPS) ---
+
+Ref: countries.region_id > regions.region_id [delete: cascade]
+Ref: locations.country_id > countries.country_id [delete: cascade]
+Ref: departments.location_id > locations.location_id
+
+// Relación reflexiva: Empleados que reportan a un jefe
+Ref: employees.manager_id > employees.employee_id 
+
+// Relación circular diferida: El gerente de un departamento es un empleado
+Ref: departments.manager_id > employees.employee_id
+
+Ref: employees.job_id > jobs.job_id
+Ref: employees.department_id > departments.department_id
+
+// Histórico de puestos
+Ref: job_history.employee_id > employees.employee_id
+Ref: job_history.job_id > jobs.job_id
+Ref: job_history.department_id > departments.department_id
