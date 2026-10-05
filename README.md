@@ -3,7 +3,25 @@
 
 ---
 
-## 🏢 1. Descripción General del Caso de Estudio
+## 📚 1. Fundamentos Teóricos de Normalización y Modelamiento
+
+### 1.1 El Proceso de Normalización
+La **Normalización de Datos** es un proceso metodológico que transforma estructuras complejas de información en tablas lógicas, simples y eficientes dentro de una base de datos relacional. Su objetivo principal es **eliminar la redundancia** (datos duplicados) y **prevenir anomalías de integridad** al momento de insertar, actualizar o eliminar registros. En el diseño de bases de datos profesionales, como el ecosistema de Oracle, la normalización actúa como el puente que traduce las reglas de negocio del mundo real en restricciones técnicas estrictas, garantizando que cada dato se almacene en un único lugar lógico dentro del sistema.
+
+### 1.2 Las Tres Formas Normales (FN)
+Para que un modelo de datos sea óptimo, íntegro y escalable, debe someterse consecutivamente a las reglas de normalización:
+*   **Primera Forma Normal (1FN):** Exige que todos los atributos sean atómicos (un solo valor por celda) y prohíbe grupos repetidos o listas de datos dentro de una sola fila.
+*   **Segunda Forma Normal (2FN):** Requiere que la tabla ya cumpla con la 1FN y que todos los atributos que no forman parte de la clave dependan por completo de la **Llave Primaria (PK)**, eliminando las dependencias parciales (especialmente crítico en llaves compuestas).
+*   **Tercera Forma Normal (3FN):** Exige el cumplimiento de la 2FN y prohíbe las dependencias transitivas; es decir, ninguna columna que no sea clave puede depender de otra columna que tampoco sea clave. El cumplimiento estricto de la 3FN es lo que divide de manera natural un diseño masivo en tablas maestras geográficas, operativas e históricas bien entrelazadas.
+
+> ### 💡 El Enfoque Lingüístico del Diseño
+> El diseño de una base de datos no es más que la traducción rigurosa del lenguaje del negocio a un esquema lógico relacional. Cada entidad representa un concepto de la realidad (un sustantivo), y cada interacción entre ellas define las reglas y restricciones operativas del sistema (un verbo transitivo). 
+> 
+> Al desglosar las necesidades de una organización mediante el **análisis lingüístico estructurado**, podemos determinar con precisión matemática dónde deben nacer las Llaves Primarias (PK) para garantizar la unicidad, en qué tablas se deben inyectar las Llaves Foráneas (FK) para entrelazar el modelo, y qué campos deben ser obligatorios u opcionales según el comportamiento del negocio en el tiempo y el espacio.
+
+---
+
+## 🏢 2. Descripción General del Caso de Estudio
 
 La corporación multinacional **Mediaglob Inc.** ha experimentado un crecimiento masivo en sus operaciones. Actualmente, la información sobre sus sedes internacionales, la estructura de sus departamentos, las plazas de empleo y las nóminas del personal se gestionan mediante múltiples archivos de Excel aislados por país. Esto ha generado graves problemas de datos duplicados, pérdida de históricos laborales y falta de control centralizado.
 
@@ -11,7 +29,7 @@ Como Ingenieros de Datos y Desarrolladores PL/SQL, el equipo de TI les ha encome
 
 ---
 
-## 🧭 2. Guía Metodológica de Análisis Lingüístico
+## 🧭 3. Guía Metodológica de Análisis Lingüístico
 
 Para identificar metódicamente cómo interactúan los datos, analizaremos el negocio utilizando **Oraciones Simples Transitivas**. Su estructura gramatical se traduce directamente en componentes técnicos de una base de datos de la siguiente manera:
 
@@ -23,7 +41,7 @@ Para identificar metódicamente cómo interactúan los datos, analizaremos el ne
 
 ---
 
-## 📝 3. Ejercicios de Análisis Gramatical y de Datos
+## 📝 4. Ejercicios de Análisis Gramatical y de Datos
 
 Analiza detenidamente cada oración y el ejemplo con datos reales provisto. Completa los espacios en blanco técnicos según corresponda para deducir la estructura de la base de datos.
 
@@ -92,7 +110,7 @@ Analiza detenidamente cada oración y el ejemplo con datos reales provisto. Comp
 
 ---
 
-## 🎯 4. Desafío de Retrospectiva de Normalización
+## 🎯 5. Desafío de Retrospectiva de Normalización
 *(Responde al respaldo de la hoja)*
 
 Observa el flujo geográfico completo: **Regiones ➔ Países ➔ Ubicaciones ➔ Departamentos**. 
