@@ -164,4 +164,4 @@ Si el dueño de la corporación te solicita añadir el nombre de la Región cont
 
 ## 6. Vamos a diagramar
 
-Existen varias herramientas de diagramación de modelos de datos. Diseña el modelo entidad-relación en [dbdiagram.io](https://dbdiagram.io).
+Existen varias herramientas de diagramación de modelos de datos. Diseña el modelo entidad-relación en <a href="https://dbdiagram.io" target="_blank">dbdiagram.io</a>.
