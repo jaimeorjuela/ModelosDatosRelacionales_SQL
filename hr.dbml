@@ -66,20 +66,20 @@ Table job_history {
 
 // --- RELACIONES (RELATIONSHIPS) ---
 
-Ref: countries.region_id > regions.region_id [delete: cascade]
-Ref: locations.country_id > countries.country_id [delete: cascade]
-Ref: departments.location_id > locations.location_id
+Ref: countries.region_id >? regions.region_id [delete: cascade]
+Ref: locations.country_id >? countries.country_id [delete: cascade]
+Ref: departments.location_id >? locations.location_id
 
 // Relación reflexiva: Empleados que reportan a un jefe
-Ref: employees.manager_id > employees.employee_id 
+Ref: employees.manager_id >? employees.employee_id 
 
 // Relación circular diferida: El gerente de un departamento es un empleado
-Ref: departments.manager_id > employees.employee_id
+Ref: departments.manager_id >? employees.employee_id
 
 Ref: employees.job_id > jobs.job_id
-Ref: employees.department_id > departments.department_id
+Ref: employees.department_id >? departments.department_id
 
 // Histórico de puestos
 Ref: job_history.employee_id > employees.employee_id
 Ref: job_history.job_id > jobs.job_id
-Ref: job_history.department_id > departments.department_id
+Ref: job_history.department_id >? departments.department_id
