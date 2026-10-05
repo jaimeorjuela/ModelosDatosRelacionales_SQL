@@ -19,7 +19,7 @@ Para que un modelo de datos sea óptimo, íntegro y escalable, debe someterse co
 > 
 > Al desglosar las necesidades de una organización mediante el **análisis lingüístico estructurado**, podemos determinar con precisión matemática dónde deben nacer las Llaves Primarias (PK) para garantizar la unicidad, en qué tablas se deben inyectar las Llaves Foráneas (FK) para entrelazar el modelo, y qué campos deben ser obligatorios u opcionales según el comportamiento del negocio en el tiempo y el espacio.
 
-### 1.2 Las Tres Formas Normales (FN) con Ejemplos Prácticos
+### 1.3 Las Tres Formas Normales (FN) con Ejemplos Prácticos
 
 Para que un modelo de datos sea óptimo, íntegro y escalable, debe someterse consecutivamente a las reglas de normalización:
 
