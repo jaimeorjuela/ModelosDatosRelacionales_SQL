@@ -1,6 +1,6 @@
 # 🐧 Guía Práctica de Comandos CLI de Linux (Hoja de Trucos)
 
-Esta guía contiene los comandos indispensables de la interfaz de línea de comandos (CLI) de Linux estructurados para facilitar el aprendizaje de los estudiantes.
+Esta guía contiene los comandos indispensables de la interfaz de línea de comandos (CLI) de Linux estructurados para facilitar el aprendizaje.
 
 ---
 
