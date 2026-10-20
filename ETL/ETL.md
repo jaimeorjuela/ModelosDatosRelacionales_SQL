@@ -95,7 +95,7 @@ El archivo es de texto plano, con separador de coma, una fila de encabezados y f
 
 ### 5.2. Preparación del destino (DDL)
 
-Conectado como el usuario `hr`, ejecutar el script que crea la tabla:
+Conectado como el usuario `kaggle/Oracle1`, ejecutar el script que crea la tabla:
 
 ```sql
 @01_ddl_credit_card_fraud.sql
