@@ -15,7 +15,7 @@
 OPTIONS (SKIP=1, ERRORS=100, ROWS=5000)   -- SKIP=1 omite la fila de encabezados
 LOAD DATA
 CHARACTERSET UTF8
-INFILE 'credit_card_fraud_detection_2026-1.csv'
+INFILE 'credit_card_fraud_detection_2026.csv'
 BADFILE 'credit_card_fraud.bad'
 DISCARDFILE 'credit_card_fraud.dsc'
 APPEND                                     -- use TRUNCATE para vaciar la tabla antes de cargar
